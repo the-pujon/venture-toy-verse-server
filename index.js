@@ -33,6 +33,14 @@ async function run() {
     const database = client.db("toysDB");
     const toysCollection = database.collection("allToys");
 
+    //Create/Post
+    app.post("/toys", async (req, res) => {
+      console.log("hitted");
+      const toy = req.body;
+      const result = await toysCollection.insertOne(toy);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
