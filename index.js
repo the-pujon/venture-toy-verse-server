@@ -3,8 +3,13 @@ const app = express();
 const cors = require("cors");
 const port = 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+require("dotenv").config();
 app.use(cors());
 app.use(express.json());
+
+console.log(process.env.PORTT);
+console.log(process.env.SERVER_USER_NAME);
+console.log(process.env.SERVER_USER_PASSWORD);
 
 //venturetoy
 //losCntunGuJ89fVq
@@ -13,8 +18,7 @@ app.get("/", (req, res) => {
   res.send("Venture Toy Verse Running......");
 });
 
-const uri =
-  "mongodb+srv://venturetoy:losCntunGuJ89fVq@atlascluster.rh05iiz.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.SERVER_USER_NAME}:${process.env.SERVER_USER_PASSWORD}@atlascluster.rh05iiz.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
