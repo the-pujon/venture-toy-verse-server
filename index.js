@@ -26,6 +26,7 @@ const client = new MongoClient(uri, {
   },
 });
 
+//mongodb function
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -80,17 +81,11 @@ async function run() {
 
       const sort = { price: sortBy };
 
-      //console.log(sort);
-      //console.log(email);
-
-      //console.log(sortBy);
       let query = {};
       if (email) {
         query = { sellerEmail: email };
-        //console.log(query);
       }
       const result = await toysCollection.find(query).sort(sort).toArray();
-      //console.log(result);
 
       res.send(result);
     });
